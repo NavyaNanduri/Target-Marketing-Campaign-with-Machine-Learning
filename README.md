@@ -115,4 +115,4 @@ To develop a high-performing and interpretable predictive model that classifies 
 ---
 
 ## 📎 License
-This repository is intended for academic and research use only.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/NavyaNanduri/Predicting-Online-Purchasers-Intention/blob/main/LICENSE) file for details.
