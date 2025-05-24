@@ -1,118 +1,98 @@
-# 🛒 Predicting Online Purchasers' Intention
+# Target Marketing Campaign with Machine Learning
 
-This project focuses on building a machine learning model to predict whether an online shopper will complete a purchase based on their browsing behavior. The model uses real-world behavioral data from an e-commerce platform to support conversion rate optimization and customer engagement strategies.
+## Project Objective
 
----
+This project aims to predict whether banking customers will purchase a variable annuity product using various machine learning models. The insights gained from this analysis can be used to optimize target marketing campaigns.
 
-## 📁 Project Structure
-```
-purchase-intention-prediction/
-│
-├── data/                     # Raw and processed dataset files
-│   └── online_shoppers_intention.csv
-│
-├── notebooks/               # Jupyter notebooks used for EDA, modeling, evaluation
-│   ├── 01_data_cleaning.ipynb
-│   ├── 02_model_training.ipynb
-│   └── 03_model_evaluation.ipynb
-│
-├── models/                  # Saved models (.pkl or .joblib)
-│   └── xgboost_model.pkl
-│
-├── scripts/                 # Python scripts for modular pipelines
-│   ├── data_preprocessing.py
-│   ├── train_model.py
-│   └── evaluate_model.py
-│
-├── outputs/                 # Visualizations, plots, reports
-│   └── feature_importance.png
-│
-├── README.md                # Project overview and documentation
-├── requirements.txt         # List of dependencies
-└── LICENSE                  # License info
-```
+## Data
 
----
+The analysis is based on a SAS dataset (`develop (1).sas7bdat`). The dataset contains information about banking customers.
 
-## 📁 Dataset
-**Name:** Online Shoppers Purchasing Intention Dataset  
-**Source:** UCI Machine Learning Repository  
-**Link:** [https://archive.ics.uci.edu/ml/datasets/Online+Shoppers+Purchasing+Intention+Dataset](https://archive.ics.uci.edu/ml/datasets/Online+Shoppers+Purchasing+Intention+Dataset)
+## Methodology
 
-**Size:** 12,330 sessions  
-**Target Variable:** `Revenue` (True = purchase, False = no purchase)
+The project follows a standard machine learning workflow:
 
-**Feature Examples:**
-- Administrative_Duration
-- Informational_Duration
-- ProductRelated_Duration
-- BounceRates
-- ExitRates
-- PageValues
-- VisitorType, Month, TrafficType, Region, etc.
+1.  **Data Loading and Initial Inspection:**
+    *   Load the SAS dataset using pandas.
+    *   Perform basic checks on the data shape, data types, and summary statistics.
+    *   Analyze the distribution of the target variable (`Ins`).
 
----
+2.  **Exploratory Data Analysis (EDA):**
+    *   Identify and handle missing values and potential outliers.
+    *   Visualize the distribution of key numerical features (e.g., `Income`, `Age`).
+    *   Analyze the distribution of categorical variables.
+    *   Visualize relationships between variables using techniques like correlation heatmaps and box plots.
 
-## 🧠 Project Goal
-To develop a high-performing and interpretable predictive model that classifies user sessions based on their likelihood to result in a purchase, enabling real-time decision-making for e-commerce applications.
+3.  **Data Preprocessing:**
+    *   Handle missing values (if any).
+    *   Encode nominal categorical variables using one-hot encoding.
+    *   Scale numerical features using `StandardScaler`.
+    *   Split the data into training and testing sets (50/50 split) using stratification to maintain the target variable distribution.
 
----
+4.  **Model Building and Evaluation:**
+    *   Train and evaluate the following machine learning models:
+        *   **Decision Tree:** Built with a specified maximum depth.
+        *   **Logistic Regression:** Trained on scaled data, with analysis of coefficients and odds ratios.
+        *   **Neural Network:** Implemented using Keras/TensorFlow with different batch sizes for comparison.
+        *   **Random Forest:** Trained with a specific number of estimators, with feature importance analysis.
+        *   **LASSO Regression:** Used for variable selection and regularization, trained with cross-validation.
+    *   Evaluate each model using key classification metrics:
+        *   Accuracy
+        *   Precision
+        *   Recall
+        *   F1 Score
+        *   AUC-ROC
+    *   Visualize confusion matrices for each model.
+    *   Visualize the Decision Tree and Random Forest feature importances.
+    *   Generate ROC curves for all models for visual comparison.
 
-## 🔧 Tools & Technologies
-- Python
-- Pandas, NumPy
-- Scikit-learn, PyCaret
-- XGBoost, LightGBM, Random Forest
-- SMOTE (for class balancing)
-- Jupyter Notebook
+5.  **Model Comparison:**
+    *   Compile a performance comparison table for all models based on the evaluation metrics.
+    *   Identify and justify the best-performing model based on the comparison.
 
----
+## Models Implemented
 
-## 🔍 Methodology
-1. **Data Preprocessing:**
-   - One-hot encoding of categorical variables
-   - Feature scaling and cleaning
-   - Class balancing using SMOTE
+*   Decision Tree
+*   Logistic Regression
+*   Neural Network (using Keras/TensorFlow)
+*   Random Forest
+*   LASSO Regression
 
-2. **Model Training:**
-   - Applied ensemble methods including XGBoost, LightGBM, and Random Forest
-   - Used Grid Search for hyperparameter optimization
+## Evaluation Metrics
 
-3. **Model Evaluation:**
-   - Accuracy: 93.54% (XGBoost)
-   - Metrics used: Precision, Recall, F1-score, AUC
+*   Accuracy
+*   Precision
+*   Recall
+*   F1 Score
+*   AUC-ROC
 
-4. **Feature Importance:**
-   - `PageValues` and `ProductRelated_Duration` were the most influential predictors
+## Code Structure
 
----
+The code is organized into distinct sections within a Jupyter Notebook or Google Colab environment:
 
-## 📊 Results
-- **Best Model:** XGBoost
-- **Top Features:** PageValues, ProductRelated_Duration, BounceRates
-- **Use Case:** Real-time intent scoring, personalized discounting, checkout optimization
+*   Import necessary libraries.
+*   Load the data.
+*   Perform EDA.
+*   Preprocess the data.
+*   Build and evaluate each machine learning model.
+*   Compare model performance.
 
----
+## Getting Started
 
-## 📚 Academic Component
-- Structured Literature Review (Tables 7.1–7.7)
-- APA-style citations for 15+ peer-reviewed studies
-- Key methods discussed: Technology Acceptance Model (TAM), Ensemble Learning, Clickstream Analysis
+To run this notebook:
 
----
+1.  Ensure you have the required libraries installed (`pandas`, `numpy`, `matplotlib`, `seaborn`, `sklearn`, `tensorflow`, `pyreadstat`). You can install them using `pip`:
+2.  Make sure the dataset (`develop (1).sas7bdat`) is accessible, for example, by mounting your Google Drive in Google Colab.
+3.  Run the code cells sequentially in a Jupyter Notebook or Google Colab.
 
-## ✅ Endgame / Future Scope
-- Deployable scoring API for intent prediction
-- Integration with live e-commerce platforms
-- Real-time interventions: offers, retargeting, chat prompts
+## Results and Conclusion
 
----
+Based on the evaluation metrics and visualizations, the Random Forest model demonstrated the best performance in predicting customer purchases for the variable annuity product. This model is recommended for use in the target marketing campaign.
 
-## 👥 Team & Acknowledgments
-**Lead Analyst:** [Navya Nanduri]  
-**Associate Analyst:** [Yatheesh Nagella]
+## Author
 
----
+NAVYA NANDURI
 
-## 📎 License
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/NavyaNanduri/Predicting-Online-Purchasers-Intention/blob/main/LICENSE) file for details.
+## License
+
+MIT LICENSE
